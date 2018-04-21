@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login_screen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.vidith.greenbrand.LoginScreen"
+    android:background="#bcbcbc">
+
+    <ImageView
+        app:srcCompat="@drawable/GreenBrandLogo"
+        android:id="@+id/imageView4"
+        android:layout_width="240dp"
+        android:layout_height="80dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="87dp"
+            android:layout_weight="0.03">
+
+        </LinearLayout>
+
+        <TextView
+            android:text="Already Have an Account?"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/RandLbl1"
+            android:textAlignment="center"
+            android:textColor="#5b8785"
+            android:textStyle="normal|bold" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/UserIn"
+            android:textSize="13sp"
+            android:textAlignment="textStart"
+            android:hint="Enter Username Here"
+            android:background="#a6a8a8" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"></LinearLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/PasswordIn"
+            android:background="#a6a8a8"
+            android:textSize="13sp"
+            android:hint="Enter Password Here" />
+
+        <Button
+            android:text="Login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/LoginBtn"
+            android:textSize="12sp"
+            android:background="#BCBCBC" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_weight="0.03">
+
+        </LinearLayout>
+
+        <TextView
+            android:text="Not a Member? Register Today"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/RandLbl2"
+            android:layout_weight="0.03"
+            android:textAlignment="center"
+            android:textColor="#5b8785"
+            android:textStyle="normal|bold" />
+
+        <Button
+            android:text="Register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/RegisterBtn"
+            android:layout_weight="0.03"
+            android:textSize="12sp"
+            android:background="#bcbcbc" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/NotifLbl"
+            android:layout_weight="0.03"
+            android:textAlignment="center" />
+
+    </LinearLayout>
+
+</RelativeLayout>
