@@ -1,0 +1,142 @@
+/* ID for UI elements:
+Login Text Input: "UserIn"
+Password text input: "PasswordIn"
+Notification label (Ex: Account not found): "NotifLbl"
+Login Button: "LoginBtn"
+Register Button: "RegisterBtn"
+*/
+
+// TEXT COLOR #5b8785
+// BCKGD COLOR #BCBCBC
+//TEXT INPUT BCKGD COLOR #a6a8a8
+
+import android.content.Intent;
+import android.provider.ContactsContract;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import junit.framework.Test;
+import org.w3c.dom.Text
+import java.util.ArrayList;
+import java.util.List;
+
+
+
+EditText UserIn;
+EditText PasswordIn;
+TextView NotifLbl;
+Button Login;
+Button Register;
+FirebaseDatabase db;
+DatabaseReference dbRef;
+boolean Found = false;
+
+public Class MainActivity{
+
+
+	@Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+
+		UserIn = (EditText) findViewById(R.id.UserIn);
+		PasswordIn = (EditText) findViewById(R.id.PasswordIn);
+		NotifLbl = (TextView) findViewById(R.id.NotifLbl);
+		Login = (Button) findViewById(R.id.LoginBtn);
+		Register = (Button) findViewById(R.id.RegisterBtn);
+		db = FirebaseDatabase.getReference();
+		
+		
+
+	}
+
+	
+	// ASSIGN TO LOGIN BUTTON	
+
+	public void Login(View v){
+
+	String UserTextIn = UserIn.getText().toString();
+	String PasswordTextIn = PasswordIn.getText().toString();
+
+	if(!((UserTextIn.equals(""))||(PasswordTextIn.equals(""))){
+
+			dbRef = db.getReference("Users");
+
+			dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot UserList) {
+
+                    for(DataSnapshot item: UserList.getChildren()){         
+                        if(item.getKey().equals(UserTextIn)){
+
+                            Found = true;
+                            break;
+                        }
+
+                    }
+
+                    if(Found){
+
+                        dbRef = dbRef.child(UserTextIn);
+
+                        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Overrides
+                            public void onDataChange(DataSnapshot UserData) {
+
+                                if(UserData.getValue().equals(PasswordTextIn)){             
+                                    NotifLbl.setText ("Account Found");
+
+
+                                } else {
+
+                                NotifLbl.setText("Incorrect Password. Try Again!");
+
+                                }
+
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                                Notiflbl.setText("Something went wrong. Try Again!");
+                            }
+                        });
+
+                    } else {
+
+                        NotifLbl.setText("Account not found. Register Today!");
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                    NotifLbl.setText("Something went wrong. Try Again!");
+                }
+            });
+				
+
+		} 
+	
+
+	}
+
+	
+	//ASSIGN TO REGISTER BUTTON
+
+	public void Register(View v){
+
+	Intent RegisterScreen = new Intent (this, RegisterScreen.class);
+	startActivity(RegisterScreen);
+
+	}
+
+
+}
